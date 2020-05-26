@@ -1,0 +1,228 @@
+#runtimes for matches in tables only#
+pair.times <- cbind(c(334.883, 32014.359, 26001.657 ,24837.322, 24133.590),#
+					c(0.01, 1, 5, 8, 449.86))#
+rownames(pair.times) <- c('A', 'B', 'C', 'D', 'E')#
+#
+exclusion.times <- cbind(c( 66.429, 279.625,2910.643, 4874.304, 3731.494, 3917.097, 3634.719, 3432.020, 939.091, 3420.819, 3701.582, 737.960, 3702.177, 3103.722, 2855.672, 3813.971, 3016.455, 3232.332, 3527.755, 4579.483, 3616.355, 3285.589, 4516.226, 11844.407,52969.754),#
+						c(0.01, 8.32962994882626, 200, 350, 445.364792920469, 446.48945148845, 447.614110056431, 448.738768624412, 449.019933266407, 449.301097908402, 449.582262550398, 449.652553710896, 449.722844871395, 449.793136031894, 449.863427192393, 450.144591834388, 450.425756476383, 450.706921118379,450.988085760374, 452.112744328355, 453.237402896336,  454.362061464317, 500, 899.726854384786, 4498.63427192393))#
+#
+exclusion.sel <- exclusion.times[c(23:22, 15, 10:8, 4, 1),]#
+exclusion.sel <- rbind(exclusion.sel, c(1232.065,NA))#
+rownames(exclusion.sel) <- c('F', 'G', 'H','I','J', 'K', 'L', 'M','N')
+?text
+plot(1:5, pair.times[,1]/3600, pch = 20, main = 'Runtime analysis', ylab = 'Time to run match (hours)', xlab = NA, axes = F, ylim = c(0:10), xlim = c(0,nrow(pair.times) + nrow(exclusion.sel)))#
+axis(3)#
+points(5 + 1:nrow(exclusion.sel), exclusion.sel[,1]/3600)#
+abline(h=0, lty = 'dotted')#
+text(c(pair.times[,1], exclusion.sel[,1]), LETTERS[1:(nrow(pair.times) + nrow(exclusion.sel))], pos = 1)
+plot(1:5, pair.times[,1]/3600, pch = 20, main = 'Runtime analysis', ylab = 'Time to run match (hours)', xlab = NA, axes = F, ylim = c(0,10), xlim = c(0,nrow(pair.times) + nrow(exclusion.sel)))
+axis(3)
+axis(4)
+?axis
+plot(1:5, pair.times[,1]/3600, pch = 20, main = 'Runtime analysis', ylab = 'Time to run match (hours)', xlab = NA, axes = F, ylim = c(0,10), xlim = c(0,nrow(pair.times) + nrow(exclusion.sel)))#
+axis(2, at = c(0:10))#
+points(5 + 1:nrow(exclusion.sel), exclusion.sel[,1]/3600)#
+abline(h=0, lty = 'dotted')#
+text(c(pair.times[,1], exclusion.sel[,1]), LETTERS[1:(nrow(pair.times) + nrow(exclusion.sel))], pos = 1)
+text(c(pair.times[,1], exclusion.sel[,1]), LETTERS[1:(nrow(pair.times) + nrow(exclusion.sel))], pos = 1)
+?text
+text(c(pair.times[,1], exclusion.sel[,1]), labels = LETTERS[1:(nrow(pair.times) + nrow(exclusion.sel))], pos = 1)
+LETTERS
+nrow(pair.times) + nrow(exclusion.sel)
+text(1:(nrow(pair.times) + nrow(exclusion.sel)), c(pair.times[,1], exclusion.sel[,1])/3600, labels = LETTERS[1:(nrow(pair.times) + nrow(exclusion.sel))], pos = 3)
+legend('topright', c('Close pairing vs. balance (Table 1)', 'Balance vs. sample size (Table 2)', pch = c(20,1)))
+?legend
+legend('topright', c('Close pairing vs. balance (Table 1)', 'Balance vs. sample size (Table 2)'), pch = c(20,1))
+plot(1:5, pair.times[,1]/3600, pch = 20, main = 'Runtime analysis', ylab = 'Time to run match (hours)', xlab = NA, axes = F, ylim = c(0,10), xlim = c(0,nrow(pair.times) + nrow(exclusion.sel)))#
+axis(2, at = c(0:10))#
+points(5 + 1:nrow(exclusion.sel), exclusion.sel[,1]/3600)#
+abline(h=0, lty = 'dotted')#
+text(1:(nrow(pair.times) + nrow(exclusion.sel)), c(pair.times[,1], exclusion.sel[,1])/3600, labels = LETTERS[1:(nrow(pair.times) + nrow(exclusion.sel))], pos = 3) #
+legend('topright', c('Close pairing vs. balance (Table 1)', 'Balance vs. sample size (Table 2)'), pch = c(20,1))#
+#finish this plot
+?expand.grid
+expand.grid(0,1)
+expand.grid(c(0,1))
+expand.grid(x = c(0,1), y = c(0,1))
+permutations(c(1:#))
+)
+permutations(c(1:3))
+library(gtools)
+permutations(c(1:3))
+permutations(3,1)
+permutations(3,3)
+getwd()
+setwd('~/Box Sync/Teaching/STAT_158/158/2019Spring/Handouts')
+## ----mainsetup,echo=FALSE,results="hide",message=FALSE,warning=FALSE,cache=FALSE----#
+# if(!file.exists(outdir)) dir.create(outdir)#
+# setwd(outdir) #make sure output in folder separate from other stuff#
+library(knitr)#
+outdir<-"8CompleteBlockOutput/"#
+knitr::opts_chunk$set(fig.align="center", background="white",prompt=TRUE, dev='pdf',cache=TRUE,cache.path = outdir, error=FALSE,message=FALSE, echo=FALSE, warning=FALSE,results="markup", fig.width=6,fig.height=6, fig.path=outdir,dev="pdf",fig.env="center",out.width=".5\\textwidth",out.height=".5\\textwidth")#
+dep_auto() #
+library(xtable)#
+doubleHeight=".7\\textwidth"#
+doubleWidth<-doubleHeight#
+options(contrasts=c("contr.sum","contr.poly"))#
+source("../../RFunctions/multiStripChart.R")#
+source("../../RFunctions/withinBlockScatter.R")#
+#
+## ----tapsdata,results="hide",echo=FALSE----------------------------------#
+taps <- c(11,26,20,56,83,71,15,34,41,6,13,32) #
+person <- as.factor(rep(c(1:4), each =3))#
+drug <- as.factor(rep(c("P","C","T"), 4))#
+tapsdf<-data.frame(taps=taps,person=person,drug=drug)#
+tapsdf#
+#
+## ----illustrateVariation,echo=FALSE,fig.width=12,fig.height=6,out.width=doubleWidth,response="hide"----#
+options(contrasts=c("contr.sum","contr.poly"))#
+alpha<-c(.5,0,-.5) #small effect#
+mu<-10#
+r<-10#
+nlevels<-3#
+N<-nlevels*r#
+err<-rnorm(N,sd=.7)#
+treatRand<-factor(sample(rep(1:nlevels,each=r)))#
+yRand<-mu+.1*(1:N-mean(1:N))+alpha[treatRand]+err #add time component to the response#
+par(mfrow=c(1,2))#
+plot(yRand,col=palette()[treatRand],pch=19,xlab="Run order")#
+plot(jitter(as.numeric(treatRand)),yRand,col=palette()[treatRand],pch=19)#
+segments(x1=1:3+.25,x0=1:3-.25,y0=tapply(yRand,treatRand,mean),y1=tapply(yRand,treatRand,mean))#
+#anova(lm(yRand~treatRand))#
+#
+## ----woutblocking,echo=FALSE,results="hide",fig.width=8,fig.height=4,out.width=doubleWidth----#
+par(mfrow=c(1,2))#
+plot(as.numeric(drug),taps, xlab="drug",xaxt="n",main="Ignoring Blocking") #
+axis(1,at=c(1:3),levels(drug))#
+interaction.plot(x.factor=drug, trace.factor=person, response=taps,type="b",pch=c(1,2,3,4),main="With blocking",lty=1,lwd=2)#
+#
+## ----
+stripchartCR,echo=FALSE,results='hide',fig.width=12,fig.height=6,out.width=doubleWidth----#
+par(mfrow=c(1,2))#
+ylim<-c(2,86)#
+plot(as.numeric(person),taps, pch = c(1,2,3)[drug],xlab="Subject",ylab="No. Taps",xaxt="n",ylim=ylim)#
+legend("topleft",levels(drug),pch=1:3)#
+#to emphasize the connections:#
+wh<-c(2,4,9,11)#
+plot(as.numeric(person)[wh],taps[wh], pch = c(1,2,3)[drug][wh],xlab="Subject",ylab="No. Taps",ylim=ylim)#
+legend("topleft",levels(drug),pch=c(1,2,3))#
+#
+## ----illustrateBlock,echo=FALSE,results="hide",fig.width=12,fig.height=6----#
+x<-replicate(10,sample(1:3))#
+treatBlock<-factor(as.vector(x))#
+blockFac<-factor(rep(1:10,each=3))#
+meanEffect<-mu+.1*(1:N-mean(1:N))+alpha[treatBlock]#
+yBlock<-meanEffect+err #add time component to the response#
+par(mfrow=c(1,2))#
+plot(yBlock,col=palette()[treatBlock],pch=19,xlab="Run order")#
+xjitter<-jitter(as.numeric(treatBlock))#
+plot(xjitter,yBlock,col=palette()[treatBlock],pch=19,main="WithBlocking")#
+#code for the mean -- see that similar to above in terms of noise#
+#segments(x1=1:3+.25,x0=1:3-.25,y0=tapply(yBlock,treatBlock,mean),y1=tapply(yBlock,treatBlock,mean),lty=2)#
+#
+#add the lines so see connections, reduces noise#
+temp<-by(cbind(xjitter,yBlock),blockFac,function(mat){lines(mat[order(mat[,1]),],lty=2)})#
+#interaction.plot(treatBlock,blockFac,yBlock)#
+#
+# #subtract off the beginning point of each to zero#
+# startVal<-yBlock[treatBlock==1]#
+# blockVal<-blockFac[treatBlock==1]#
+# centeredData<-by(data.frame(y=yBlock,treat=treatBlock),blockFac,function(x){newy<-x$y-x$y[x$treat==1]; return(cbind(newy=newy,x))})#
+# cblock<-rep(levels(blockFac),times=sapply(centeredData,nrow))#
+# centeredData<-data.frame(do.call("rbind",centeredData),block=factor(cblock))#
+# centeredData$xjitter<-as.numeric(centeredData$treat)#
+# with(centeredData, plot(xjitter,newy,col=palette()[treat],pch=19,main="Subtract off first"))#
+# by(cbind(centeredData),centeredData$block,function(mat){lines(mat[order(mat[,"xjitter"]),c("xjitter","newy")],lty=2)})#
+#
+## ----compareSignif,echo=FALSE--------------------------------------------#
+cat("Significance without blocking (CR[1] only randomizing):\n")#
+anova(lm(yRand~treatRand))#
+cat("Significance with block (CB[1]):\n")#
+anova(lm(yBlock~treatBlock+blockFac))#
+#
+## ----aovtap,echo=FALSE---------------------------------------------------#
+tap.aov = aov(taps  ~ person+ drug)#
+summary(tap.aov)#
+#
+## ----aovtapInter,echo=FALSE----------------------------------------------#
+tap.aovInt = aov(taps  ~ person*drug)#
+summary(tap.aovInt)#
+#
+## ----aovtapNoBlock,echo=FALSE--------------------------------------------#
+tap.aovNoB = aov(taps  ~ drug)#
+summary(tap.aovNoB)
+permTap<-function(){#
+	resp<-unlist(tapply(taps,person,function(x){x})); #
+	block<-unlist(tapply(person,person,function(x){x})); #
+	x<-unlist(tapply(drug,person,function(y){sample(y)})); #
+	Fperm<-anova(lm(resp~x+block))[["F value"]][1]#
+	return(Fperm)#
+	}#
+permTapF<-replicate(1000,permTap())
+head(permTapF)
+length(permTapF)
+expand.grid(permutations(3,3), permutations(3,3))
+tmp.out <- expand.grid(permutations(3,3), permutations(3,3))
+dim(tmp.out)
+head(tmp.out)
+in.block.choices <- permutations(3,3)
+block.opt <- nrow(in.block.choices)
+expand.grid(block.opt, block.opt)
+expand.grid(1:block.opt, 1:block.opt)
+expand.grid(1:block.opt, 1:block.opt, 1:block.opt)
+expand.grid(rep(1:block.opt,4))
+taps
+person
+permutations(c(2:4),3)
+rep
+rep(list(in.block.perms),4)
+in.block.perms <- permutations(3,3)
+rep(list(in.block.perms),4)
+temp.list <- rep(list(in.block.perms),4)
+str(temp.list)
+tmp.out <- expand.grid(rep(list(in.block.perms),4)))
+tmp.out <- expand.grid(rep(list(in.block.perms),4))
+dim(tmp.out)
+head(tmp.out)
+tmp.out <- expand.grid(rep(list(1:nperm),4))
+nperm <- nrow(in.block.perms)
+tmp.out <- expand.grid(rep(list(1:nperm),4))
+length(tmp.out)
+tmp.out
+resp<-unlist(tapply(taps,person,function(x){x}))
+resp
+taps
+str(resp)
+person
+block<-unlist(tapply(person,person,function(x){x}));
+str(block)
+identical)block, person
+identical(block, person)
+sum(block == perosn)
+sum(block == person)
+z
+library(gtools)#
+in.block.perms <- permutations(3,3)#
+nperm <- nrow(in.block.perms)#
+by.block <- expand.grid(rep(list(1:nperm),4))#
+permTapF <- apply(by.block,1,function(x){#
+	z <- drug#
+	for(i in 1:4) z[person == i] <- z[person == i][in.block.perms[x[i],]]#
+	anova(lm(taps~z+person))[["F value"]][1]#
+})
+length(permTapF)
+par(mfrow=c(1,1))#
+hist(permTapF,freq=FALSE,ylim=c(0,.9),breaks=100)#
+lines(density(permTapF))#
+abline(v=quantile(probs=.95,permTapF))#
+#Parametric model:#
+obsF<-summary(tap.aov)[[1]][2,"F value"]#
+points(x=obsF,y=0,pch=4,lwd=2)#
+curve(df(x,df1=2,df2=6),add=TRUE,col="red",n=1000)#
+abline(v=qf(.95,df1=2,df2=6),col="red")#
+legend("topright",c("Parametric","Permutation"),fill=c("red","black"))#
+cat("p-value with permutation test:\n")#
+sum(permTapF>=obsF)/length(permTapF)
+getwd()
+setwd('~/Box Sync/Research/FineBalanceTheory/reproducibility/optimal_tradeoffs_code/data')
+dir()
